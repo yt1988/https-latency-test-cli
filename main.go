@@ -41,6 +41,7 @@ Output
       --json            the full result as JSON on stdout (nothing else)
   -v, --verbose         a line per service: address, protocol, status, handshakes, every sample, jitter
       --no-link         don't print the result link
+      --long-link       print it in full instead of shortened (s.1ms.dog/…)
       --lang CODE       en, zh-CN, zh-TW, ja, ko, es, fr, de, pt, ru (the menu asks once and remembers it;
                         HTTPSLATENCY_LANG works too)
       --no-color        plain text (also with NO_COLOR set)
@@ -55,15 +56,16 @@ Service list and updates
 
 Nothing is uploaded. Besides the requests to the services themselves, a run fetches the current list from 1ms.dog and
 asks it where it runs from (city, country and network for the "from" line and the local pack; the address is never
-shown or saved). The result link holds the country and each service's time, never an address; it is only printed,
-not sent. At most once an hour it also asks 1ms.dog for the latest release and, in a terminal, offers to update (the
-new binary is checked against the release checksums). --offline or HTTPSLATENCY_NO_UPDATE=1 turns both off.
+shown or saved). The result link holds the country and each service's time, never an address; it is shortened with
+1ms.dog's link shortener, as on the page (--long-link prints it in full without asking). At most once an hour it also
+asks 1ms.dog for the latest release and, in a terminal, offers to update (the new binary is checked against the
+release checksums). --offline turns all of these off; HTTPSLATENCY_NO_UPDATE=1 only the update check.
 `
 
 type cliOpts struct {
 	services, cats, pack, lang, file string
 	output, saveTo                   string
-	v6, v4, json, noLink             bool
+	v6, v4, json, noLink, longLink   bool
 	verbose, quiet, noColor          bool
 	offline, list, version           bool
 	rounds, conc                     int
@@ -135,6 +137,7 @@ func cli(args []string, stdout, stderr io.Writer) int {
 	boolean(&o.v6, "6")
 	boolean(&o.json, "json")
 	boolean(&o.noLink, "no-link")
+	boolean(&o.longLink, "long-link")
 	boolean(&o.verbose, "v", "verbose")
 	boolean(&o.quiet, "q", "quiet")
 	boolean(&o.noColor, "no-color")
@@ -278,6 +281,9 @@ func cli(args []string, stdout, stderr io.Writer) int {
 			cc = from.Country
 		}
 		link = shareLink(t0, ro.pack, cc, rs)
+		if !o.longLink && !o.offline {
+			link = shorten(link)
+		}
 	}
 	if o.json {
 		enc := json.NewEncoder(stdout)

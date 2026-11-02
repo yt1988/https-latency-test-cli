@@ -45,12 +45,12 @@ from Tokyo, JP · AS2516 KDDI CORPORATION
 › Local favorites 11 ms  ·  Global services 38 ms  ·  overall median 31 ms
 › Fast nearby and worldwide — Gaming, calls and streaming should all feel smooth from here.
   Gaming smooth  ·  Video calls smooth  ·  Streaming smooth  ·  AI tools smooth  ·  Dev tools smooth
-› Result link: https://1ms.dog/r/2.…
+› Result link: https://s.1ms.dog/TuuUvj
 ```
 
 Each row is a service's median in ms, on the same log-scale lane as the page's field (5 ms to 1 s), with the page's dog-speed grade and the edge node that answered (an airport code, where the service names it in its headers). The verdict is the page's: local favorites against global services, then gaming, calls, streaming, AI and developer tools. `-v` adds a line per service: address, HTTP version and status, the first request's DNS, TCP and TLS times, every sample, and jitter.
 
-The **result link** opens the run on 1ms.dog, like a result shared from the page. It holds the country this ran from and each service's time, never an address; the tool only prints it. `--no-link` leaves it out.
+The **result link** opens the run on 1ms.dog, like a result shared from the page. It holds the country this ran from and each service's time, never an address, and is shortened with 1ms.dog's link shortener, as the page's share links are (`s.1ms.dog/…`). `--long-link` prints it in full without asking the shortener; `--no-link` leaves it out.
 
 ## How it measures
 
@@ -62,13 +62,13 @@ The **result link** opens the run on 1ms.dog, like a result shared from the page
 
 ## Options
 
-`httpslatency -h` lists them all: `-s` services, `-c` groups (`local`, `ai`, `web`, `video`, `social`, `dev`, `game`, `cdn`), `-P` local pack, `-4`/`-6`, `-n` timed requests, `-t` timeout, `-C` concurrency, `-o md|json` and `--file` to save, `--json` for stdout, `-v`, `--no-link`, `--lang` (10 languages; the menu asks once and remembers it), `--offline`, `--services FILE`, `--list`, `--update`.
+`httpslatency -h` lists them all: `-s` services, `-c` groups (`local`, `ai`, `web`, `video`, `social`, `dev`, `game`, `cdn`), `-P` local pack, `-4`/`-6`, `-n` timed requests, `-t` timeout, `-C` concurrency, `-o md|json` and `--file` to save, `--json` for stdout, `-v`, `--no-link`, `--long-link`, `--lang` (10 languages; the menu asks once and remembers it), `--offline`, `--services FILE`, `--list`, `--update`.
 
 **Updates.** At most once an hour httpslatency asks 1ms.dog for the latest release; in a terminal it offers to update, checks the new binary against the release checksums, swaps it in and runs again. `httpslatency --update` does it right away; `--offline` or `HTTPSLATENCY_NO_UPDATE=1` turns it off.
 
 ## Privacy
 
-Each run fetches the current service list from 1ms.dog and asks it where the run comes from (`1ms.dog/_ms/me`, with Cloudflare's `speed.cloudflare.com/meta` as the fallback), for the "from" line and the local pack: city, country and network. The address itself is never shown or saved. At most once an hour it asks 1ms.dog for the latest version. `--offline` skips all three. Nothing else is sent anywhere but the requests to the services themselves, and results are never uploaded.
+Each run fetches the current service list from 1ms.dog and asks it where the run comes from (`1ms.dog/_ms/me`, with Cloudflare's `speed.cloudflare.com/meta` as the fallback), for the "from" line and the local pack: city, country and network. The address itself is never shown or saved. The result link (country and times only) goes to 1ms.dog's link shortener to be shortened; `--long-link` skips that. At most once an hour it asks 1ms.dog for the latest version. `--offline` skips all of these. Nothing else is sent anywhere but the requests to the services themselves, and the full results are never uploaded.
 
 ## License
 
