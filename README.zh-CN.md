@@ -1,0 +1,75 @@
+# httpslatency
+
+[English](README.md) · **简体中文**
+
+从这台机器访问真实的网站到底有多快？`httpslatency` 测的是**真实的 HTTPS 往返**：目标和 [1ms.dog](https://1ms.dog) 一样，是 40 多个服务（ChatGPT、Claude、YouTube、Netflix、GitHub、Docker Hub、Steam、几大 CDN……），再加上本机所在国家的本地常用网站。不是 ping，也不只是 TCP 握手，而是向每个服务自己的域名发 HTTPS 请求，由它的边缘节点应答，在已经建好的连接上计时，和浏览器看到的一样。单个可执行文件，没有依赖，适合 VPS、Linux 主机、路由器（MIPS/ARM）和桌面电脑。
+
+```sh
+curl -fsSL https://1ms.dog/i | sh
+```
+
+这条命令把 `httpslatency` 装到 `/usr/local/bin`（非 root 时装到 `~/.local/bin`），然后打开一个简短的菜单：测全部、只测某几组，还是换成其他地区的本地常用；用 IPv4 还是 IPv6；每个服务计时几次；要不要把结果存成文件。测完会打印对应的命令，下次可以不经菜单直接运行。Windows 上在 PowerShell 里运行：
+
+```powershell
+irm https://1ms.dog/i.ps1 | iex
+```
+
+其他用法：
+
+```sh
+curl -fsSL https://1ms.dog/i | sh -s -- run          # 下载到临时目录运行一次，不安装
+curl -fsSL https://1ms.dog/i | sh -s -- --no-run     # 只安装
+httpslatency -c ai,video,game                       # 只测某几组
+httpslatency -s chatgpt,claude,github -n 10          # 只测某几个服务，每个计时 10 次
+httpslatency -P cn                                   # 本地常用换成中国大陆的
+httpslatency -6 -v                                   # 走 IPv6，并给每个服务加一行详情
+httpslatency -o md                                   # 同时把结果存成 Markdown（或 -o json）
+httpslatency --json > result.json
+```
+
+安装脚本先从 1ms.dog 下载（它会转发 GitHub 的发布文件，方便访问 GitHub 慢的地区），不行再从 GitHub 下载，并用发布里的 `checksums.txt` 校验 SHA-256。提供的版本：Linux（amd64、arm64、armv7、386、riscv64、mips、mipsle）、macOS、FreeBSD、Windows（[发布页](https://github.com/yt1988/https-latency-test-cli/releases)）。有 Go 的话也可以：`go install github.com/yt1988/https-latency-test-cli@latest`。
+
+## 输出什么
+
+```
+到 44 个服务的 HTTPS 延迟 · 每个计时 5 次
+出口 Tokyo, JP · AS2516 KDDI CORPORATION
+
+  本地常用 · 日本
+    Yahoo! JAPAN         9.8 ms  ━━━●················  闪电狗
+    LINE                  12 ms  ━━━━●···············  闪电狗     NRT
+  AI
+    ChatGPT              5.1 ms  ━●··················  闪电狗     NRT
+    Claude               5.4 ms  ━●··················  闪电狗     NRT
+  …
+› 本地常用 11 ms  ·  全球服务 38 ms  ·  综合中位数 31 ms
+› 本地和全球都很快：打游戏、视频通话、看视频都没问题。
+  游戏 流畅  ·  视频通话 流畅  ·  看视频 流畅  ·  AI 工具 流畅  ·  开发工具 流畅
+› 结果链接：https://1ms.dog/zh-cn/r/2.…
+```
+
+每行是一个服务的中位延迟（毫秒），画在和网页同样的对数刻度跑道上（5 ms 到 1 s），后面是网页的柴犬速度档位，以及应答的边缘节点（机场代码，服务在响应头里写明时才有）。结论和网页一致：先比较本地常用和全球服务，再给出游戏、视频通话、看视频、AI 工具、开发工具各自的体验。`-v` 给每个服务加一行：地址、HTTP 版本和状态码、首次请求的 DNS、TCP、TLS 耗时、每次计时的结果和抖动。
+
+**结果链接**会在 1ms.dog 上打开这次结果，和网页分享出去的结果一样。链接里只有运行地所在的国家和每个服务的延迟，不含任何地址；工具只是把它打印出来，不会发送。加 `--no-link` 就不打印。
+
+## 怎么测
+
+- **网页的方法，搬到浏览器之外。** 每个服务先发一个不计时的请求，完成 DNS、TCP 和 TLS；之后每次计时请求都走同一条连接，间隔 120–200 ms，从发出请求计到收到响应头（也就是浏览器的 fetch 等待的时间）。服务支持 HTTP/2 时使用 HTTP/2。请求带随机参数绕过缓存，CDN 那几行除外（带参数会让 CDN 回源）。
+- **只要有 HTTP 应答就算数**，错误状态码也算：它同样是从服务的边缘节点回来的。如果某次计时请求不得不新建连接（服务器关掉了旧连接），这次不计入并重发，所以握手时间不会混进样本。
+- **没叼回来**：5 秒内连不上，或者连续两次计时请求丢失（每次 4 秒，`-t` 可改）。
+- **清单和网页同一份。** 每次运行读取 [1ms.dog/services.json](https://1ms.dog/services.json)，它由网站按自己的清单生成；程序里也内置了一份，网站连不上时使用（`--offline`），每天由工作流自动同步。本地常用跟随本机所在国家（`-P` 可以换），Telegram 测的是该地区多数账号所在的数据中心，和网页一样。
+- 同时测 8 个服务（`-C`），每个服务各用一条连接。直连，不读取代理环境变量，因为要测的是这台机器自己的线路。
+
+## 选项
+
+`httpslatency -h` 列出全部选项：`-s` 服务、`-c` 分组（`local`、`ai`、`web`、`video`、`social`、`dev`、`game`、`cdn`）、`-P` 本地常用、`-4`/`-6`、`-n` 计时次数、`-t` 超时、`-C` 并发、`-o md|json` 和 `--file` 保存文件、`--json` 输出到标准输出、`-v`、`--no-link`、`--lang`（10 种语言；菜单第一次会问，之后记住）、`--offline`、`--services FILE`、`--list`、`--update`。
+
+**更新。** 每小时最多向 1ms.dog 查询一次最新版本；在终端里会询问是否更新，用发布的校验和核对新文件，替换后重新运行。`httpslatency --update` 立即更新；`--offline` 或 `HTTPSLATENCY_NO_UPDATE=1` 关闭检查。
+
+## 隐私
+
+每次运行会从 1ms.dog 取最新的服务清单，并询问运行地在哪里（`1ms.dog/_ms/me`，失败时用 Cloudflare 的 `speed.cloudflare.com/meta`），用于「出口」那一行和本地常用：城市、国家和网络。地址本身从不显示或保存。每小时最多向 1ms.dog 查询一次最新版本。`--offline` 三者都跳过。除此之外只有发给各个服务的请求本身，结果从不上传。
+
+## 许可
+
+MIT

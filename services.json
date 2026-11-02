@@ -1,0 +1,742 @@
+{
+ "version": 1,
+ "services": [
+  {
+   "id": "chatgpt",
+   "name": "ChatGPT",
+   "cat": "ai",
+   "url": "https://chatgpt.com/favicon.ico"
+  },
+  {
+   "id": "claude",
+   "name": "Claude",
+   "cat": "ai",
+   "url": "https://claude.ai/cdn-cgi/trace"
+  },
+  {
+   "id": "gemini",
+   "name": "Gemini",
+   "cat": "ai",
+   "url": "https://gemini.google.com/generate_204"
+  },
+  {
+   "id": "copilot",
+   "name": "Copilot",
+   "cat": "ai",
+   "url": "https://copilot.microsoft.com/cdn-cgi/trace"
+  },
+  {
+   "id": "grok",
+   "name": "Grok",
+   "cat": "ai",
+   "url": "https://grok.com/cdn-cgi/trace"
+  },
+  {
+   "id": "deepseek",
+   "name": "DeepSeek",
+   "cat": "ai",
+   "url": "https://chat.deepseek.com/favicon.svg",
+   "origin": "CN"
+  },
+  {
+   "id": "google",
+   "name": "Google",
+   "cat": "web",
+   "url": "https://www.google.com/generate_204"
+  },
+  {
+   "id": "apple",
+   "name": "Apple",
+   "cat": "web",
+   "url": "https://www.apple.com/favicon.ico"
+  },
+  {
+   "id": "microsoft",
+   "name": "Microsoft",
+   "cat": "web",
+   "url": "https://www.microsoft.com/favicon.ico"
+  },
+  {
+   "id": "wikipedia",
+   "name": "Wikipedia",
+   "cat": "web",
+   "url": "https://upload.wikimedia.org/favicon.ico"
+  },
+  {
+   "id": "amazon",
+   "name": "Amazon",
+   "cat": "web",
+   "url": "https://www.amazon.com/favicon.ico"
+  },
+  {
+   "id": "zoom",
+   "name": "Zoom",
+   "cat": "web",
+   "url": "https://zoom.us/cdn-cgi/trace"
+  },
+  {
+   "id": "youtube",
+   "name": "YouTube",
+   "cat": "video",
+   "url": "https://www.youtube.com/generate_204"
+  },
+  {
+   "id": "netflix",
+   "name": "Netflix",
+   "cat": "video",
+   "url": "https://www.netflix.com/favicon.ico"
+  },
+  {
+   "id": "tiktok",
+   "name": "TikTok",
+   "cat": "video",
+   "url": "https://www.tiktok.com/favicon.ico"
+  },
+  {
+   "id": "twitch",
+   "name": "Twitch",
+   "cat": "video",
+   "url": "https://www.twitch.tv/favicon.ico"
+  },
+  {
+   "id": "spotify",
+   "name": "Spotify",
+   "cat": "video",
+   "url": "https://open.spotify.com/favicon.ico"
+  },
+  {
+   "id": "x",
+   "name": "X",
+   "cat": "social",
+   "url": "https://abs.twimg.com/favicons/twitter.3.ico"
+  },
+  {
+   "id": "instagram",
+   "name": "Instagram",
+   "cat": "social",
+   "url": "https://scontent.cdninstagram.com/"
+  },
+  {
+   "id": "facebook",
+   "name": "Facebook",
+   "cat": "social",
+   "url": "https://www.facebook.com/favicon.ico"
+  },
+  {
+   "id": "whatsapp",
+   "name": "WhatsApp",
+   "cat": "social",
+   "url": "https://web.whatsapp.com/favicon.ico"
+  },
+  {
+   "id": "telegram",
+   "name": "Telegram",
+   "cat": "social",
+   "url": "https://venus.web.telegram.org/apiw1"
+  },
+  {
+   "id": "discord",
+   "name": "Discord",
+   "cat": "social",
+   "url": "https://discord.com/cdn-cgi/trace"
+  },
+  {
+   "id": "reddit",
+   "name": "Reddit",
+   "cat": "social",
+   "url": "https://www.reddit.com/robots.txt"
+  },
+  {
+   "id": "github",
+   "name": "GitHub",
+   "cat": "dev",
+   "url": "https://github.com/favicon.ico"
+  },
+  {
+   "id": "npm",
+   "name": "npm",
+   "cat": "dev",
+   "url": "https://registry.npmjs.org/-/ping"
+  },
+  {
+   "id": "dockerhub",
+   "name": "Docker Hub",
+   "cat": "dev",
+   "url": "https://registry-1.docker.io/v2/"
+  },
+  {
+   "id": "pypi",
+   "name": "PyPI",
+   "cat": "dev",
+   "url": "https://pypi.org/static/images/favicon.35549fe8.ico"
+  },
+  {
+   "id": "huggingface",
+   "name": "Hugging Face",
+   "cat": "dev",
+   "url": "https://huggingface.co/favicon.ico",
+   "m": "HEAD"
+  },
+  {
+   "id": "steam",
+   "name": "Steam",
+   "cat": "game",
+   "url": "https://store.steampowered.com/favicon.ico"
+  },
+  {
+   "id": "playstation",
+   "name": "PlayStation",
+   "cat": "game",
+   "url": "https://www.playstation.com/favicon.ico"
+  },
+  {
+   "id": "xbox",
+   "name": "Xbox",
+   "cat": "game",
+   "url": "https://www.xbox.com/favicon.ico"
+  },
+  {
+   "id": "nintendo",
+   "name": "Nintendo",
+   "cat": "game",
+   "url": "https://www.nintendo.com/favicon.ico"
+  },
+  {
+   "id": "epic",
+   "name": "Epic Games",
+   "cat": "game",
+   "url": "https://store.epicgames.com/cdn-cgi/trace"
+  },
+  {
+   "id": "cloudflare",
+   "name": "Cloudflare",
+   "cat": "cdn",
+   "url": "https://www.cloudflare.com/cdn-cgi/trace",
+   "raw": true
+  },
+  {
+   "id": "akamai",
+   "name": "Akamai",
+   "cat": "cdn",
+   "url": "https://store.akamai.steamstatic.com/favicon.ico",
+   "raw": true
+  },
+  {
+   "id": "cloudfront",
+   "name": "Amazon CloudFront",
+   "cat": "cdn",
+   "url": "https://a0.awsstatic.com/libra-css/images/site/fav/favicon.ico",
+   "raw": true
+  },
+  {
+   "id": "google-cdn",
+   "name": "Google Cloud CDN",
+   "cat": "cdn",
+   "url": "https://www.gstatic.com/generate_204",
+   "raw": true
+  },
+  {
+   "id": "fastly",
+   "name": "Fastly",
+   "cat": "cdn",
+   "url": "https://fastly.jsdelivr.net/npm/jquery@3.7.1/package.json",
+   "raw": true
+  },
+  {
+   "id": "azure",
+   "name": "Azure Front Door",
+   "cat": "cdn",
+   "url": "https://assets.xboxservices.com/assets/f8/67/f86740d7-eedd-4d9c-a963-76af7e36c4b2.svg?n=Xbox-Follow-Footer_Image-0_Mail_32x32_02.svg",
+   "raw": true
+  }
+ ],
+ "packs": {
+  "cn": [
+   {
+    "id": "baidu",
+    "name": "百度",
+    "cat": "local",
+    "url": "https://www.baidu.com/favicon.ico"
+   },
+   {
+    "id": "bilibili",
+    "name": "哔哩哔哩",
+    "cat": "local",
+    "url": "https://www.bilibili.com/favicon.ico"
+   },
+   {
+    "id": "wechat",
+    "name": "微信",
+    "cat": "local",
+    "url": "https://weixin.qq.com/favicon.ico"
+   },
+   {
+    "id": "douyin",
+    "name": "抖音",
+    "cat": "local",
+    "url": "https://www.douyin.com/robots.txt"
+   }
+  ],
+  "tw": [
+   {
+    "id": "yahoo-tw",
+    "name": "Yahoo奇摩",
+    "cat": "local",
+    "url": "https://tw.yahoo.com/favicon.ico"
+   },
+   {
+    "id": "line-tw",
+    "name": "LINE",
+    "cat": "local",
+    "url": "https://line.me/favicon.ico"
+   },
+   {
+    "id": "ettoday",
+    "name": "ETtoday",
+    "cat": "local",
+    "url": "https://www.ettoday.net/favicon.ico"
+   },
+   {
+    "id": "ptt",
+    "name": "PTT",
+    "cat": "local",
+    "url": "https://www.ptt.cc/cdn-cgi/trace"
+   }
+  ],
+  "jp": [
+   {
+    "id": "yahoo-jp",
+    "name": "Yahoo! JAPAN",
+    "cat": "local",
+    "url": "https://www.yahoo.co.jp/favicon.ico"
+   },
+   {
+    "id": "line",
+    "name": "LINE",
+    "cat": "local",
+    "url": "https://line.me/favicon.ico"
+   },
+   {
+    "id": "rakuten",
+    "name": "楽天",
+    "cat": "local",
+    "url": "https://www.rakuten.co.jp/favicon.ico"
+   },
+   {
+    "id": "niconico",
+    "name": "ニコニコ",
+    "cat": "local",
+    "url": "https://www.nicovideo.jp/favicon.ico"
+   }
+  ],
+  "kr": [
+   {
+    "id": "naver",
+    "name": "NAVER",
+    "cat": "local",
+    "url": "https://www.naver.com/robots.txt"
+   },
+   {
+    "id": "kakao",
+    "name": "Kakao",
+    "cat": "local",
+    "url": "https://www.kakaocorp.com/robots.txt"
+   },
+   {
+    "id": "coupang",
+    "name": "Coupang",
+    "cat": "local",
+    "url": "https://image7.coupangcdn.com/image/coupang/favicon/v2/favicon.ico"
+   },
+   {
+    "id": "daum",
+    "name": "Daum",
+    "cat": "local",
+    "url": "https://www.daum.net/favicon.ico"
+   }
+  ],
+  "ru": [
+   {
+    "id": "yandex",
+    "name": "Яндекс",
+    "cat": "local",
+    "url": "https://yandex.ru/favicon.ico"
+   },
+   {
+    "id": "vk",
+    "name": "VK",
+    "cat": "local",
+    "url": "https://vk.com/favicon.ico"
+   },
+   {
+    "id": "wildberries",
+    "name": "Wildberries",
+    "cat": "local",
+    "url": "https://www.wildberries.ru/favicon.ico"
+   },
+   {
+    "id": "mailru",
+    "name": "Mail.ru",
+    "cat": "local",
+    "url": "https://mail.ru/favicon.ico"
+   }
+  ],
+  "in": [
+   {
+    "id": "flipkart",
+    "name": "Flipkart",
+    "cat": "local",
+    "url": "https://static-assets-web.flixcart.com/favicon.ico"
+   },
+   {
+    "id": "hotstar",
+    "name": "JioHotstar",
+    "cat": "local",
+    "url": "https://www.hotstar.com/robots.txt",
+    "m": "HEAD"
+   },
+   {
+    "id": "paytm",
+    "name": "Paytm",
+    "cat": "local",
+    "url": "https://paytm.com/favicon.ico"
+   },
+   {
+    "id": "amazon-in",
+    "name": "Amazon.in",
+    "cat": "local",
+    "url": "https://www.amazon.in/favicon.ico"
+   }
+  ],
+  "sea": [
+   {
+    "id": "shopee",
+    "name": "Shopee",
+    "cat": "local",
+    "url": "https://shopee.sg/favicon.ico"
+   },
+   {
+    "id": "lazada",
+    "name": "Lazada",
+    "cat": "local",
+    "url": "https://www.lazada.sg/favicon.ico"
+   },
+   {
+    "id": "grab",
+    "name": "Grab",
+    "cat": "local",
+    "url": "https://www.grab.com/robots.txt"
+   },
+   {
+    "id": "line-sea",
+    "name": "LINE",
+    "cat": "local",
+    "url": "https://line.me/favicon.ico"
+   }
+  ],
+  "eu": [
+   {
+    "id": "bbc",
+    "name": "BBC",
+    "cat": "local",
+    "url": "https://www.bbc.co.uk/favicon.ico"
+   },
+   {
+    "id": "booking",
+    "name": "Booking.com",
+    "cat": "local",
+    "url": "https://www.booking.com/robots.txt",
+    "m": "HEAD"
+   },
+   {
+    "id": "zalando",
+    "name": "Zalando",
+    "cat": "local",
+    "url": "https://www.zalando.com/favicon.ico"
+   },
+   {
+    "id": "allegro",
+    "name": "Allegro",
+    "cat": "local",
+    "url": "https://allegro.pl/favicon.ico"
+   }
+  ],
+  "latam": [
+   {
+    "id": "mercadolibre",
+    "name": "Mercado Libre",
+    "cat": "local",
+    "url": "https://www.mercadolibre.com/favicon.ico"
+   },
+   {
+    "id": "globo",
+    "name": "Globo",
+    "cat": "local",
+    "url": "https://www.globo.com/favicon.ico"
+   },
+   {
+    "id": "nubank",
+    "name": "Nubank",
+    "cat": "local",
+    "url": "https://nubank.com.br/favicon.ico",
+    "m": "HEAD"
+   },
+   {
+    "id": "ifood",
+    "name": "iFood",
+    "cat": "local",
+    "url": "https://www.ifood.com.br/cdn-cgi/trace"
+   }
+  ],
+  "na": [
+   {
+    "id": "espn",
+    "name": "ESPN",
+    "cat": "local",
+    "url": "https://www.espn.com/favicon.ico"
+   },
+   {
+    "id": "disneyplus",
+    "name": "Disney+",
+    "cat": "local",
+    "url": "https://www.disneyplus.com/favicon.ico"
+   },
+   {
+    "id": "yahoo",
+    "name": "Yahoo",
+    "cat": "local",
+    "url": "https://www.yahoo.com/favicon.ico"
+   },
+   {
+    "id": "target",
+    "name": "Target",
+    "cat": "local",
+    "url": "https://www.target.com/favicon.ico"
+   }
+  ],
+  "me": [
+   {
+    "id": "talabat",
+    "name": "talabat",
+    "cat": "local",
+    "url": "https://www.talabat.com/cdn-cgi/trace"
+   },
+   {
+    "id": "careem",
+    "name": "Careem",
+    "cat": "local",
+    "url": "https://www.careem.com/favicon.ico"
+   },
+   {
+    "id": "aljazeera",
+    "name": "Al Jazeera",
+    "cat": "local",
+    "url": "https://www.aljazeera.com/favicon_aje.ico"
+   },
+   {
+    "id": "trendyol",
+    "name": "Trendyol",
+    "cat": "local",
+    "url": "https://www.trendyol.com/cdn-cgi/trace"
+   }
+  ]
+ },
+ "packOf": {
+  "CN": "cn",
+  "TW": "tw",
+  "HK": "tw",
+  "MO": "tw",
+  "JP": "jp",
+  "KR": "kr",
+  "RU": "ru",
+  "BY": "ru",
+  "KZ": "ru",
+  "IN": "in",
+  "BD": "in",
+  "PK": "in",
+  "LK": "in",
+  "NP": "in",
+  "SG": "sea",
+  "MY": "sea",
+  "TH": "sea",
+  "VN": "sea",
+  "ID": "sea",
+  "PH": "sea",
+  "GB": "eu",
+  "IE": "eu",
+  "DE": "eu",
+  "FR": "eu",
+  "NL": "eu",
+  "BE": "eu",
+  "LU": "eu",
+  "AT": "eu",
+  "CH": "eu",
+  "IT": "eu",
+  "ES": "eu",
+  "PT": "eu",
+  "PL": "eu",
+  "CZ": "eu",
+  "SK": "eu",
+  "HU": "eu",
+  "RO": "eu",
+  "BG": "eu",
+  "GR": "eu",
+  "SE": "eu",
+  "NO": "eu",
+  "DK": "eu",
+  "FI": "eu",
+  "IS": "eu",
+  "EE": "eu",
+  "LV": "eu",
+  "LT": "eu",
+  "SI": "eu",
+  "HR": "eu",
+  "UA": "eu",
+  "BR": "latam",
+  "AR": "latam",
+  "MX": "latam",
+  "CL": "latam",
+  "CO": "latam",
+  "PE": "latam",
+  "UY": "latam",
+  "VE": "latam",
+  "EC": "latam",
+  "BO": "latam",
+  "PY": "latam",
+  "CR": "latam",
+  "PA": "latam",
+  "DO": "latam",
+  "GT": "latam",
+  "US": "na",
+  "CA": "na",
+  "AE": "me",
+  "SA": "me",
+  "QA": "me",
+  "KW": "me",
+  "BH": "me",
+  "OM": "me",
+  "EG": "me",
+  "TR": "me",
+  "IL": "me",
+  "JO": "me"
+ },
+ "langPack": {
+  "en": "na",
+  "zh-CN": "cn",
+  "zh-TW": "tw",
+  "ja": "jp",
+  "ko": "kr",
+  "es": "latam",
+  "fr": "eu",
+  "de": "eu",
+  "pt": "latam",
+  "ru": "ru"
+ },
+ "uses": [
+  {
+   "use": "game",
+   "ids": [
+    "steam",
+    "playstation",
+    "xbox",
+    "nintendo",
+    "epic"
+   ],
+   "good": 80,
+   "ok": 150
+  },
+  {
+   "use": "call",
+   "ids": [
+    "zoom",
+    "whatsapp",
+    "discord",
+    "telegram"
+   ],
+   "good": 150,
+   "ok": 250
+  },
+  {
+   "use": "stream",
+   "ids": [
+    "youtube",
+    "netflix",
+    "twitch",
+    "tiktok",
+    "spotify"
+   ],
+   "good": 200,
+   "ok": 400
+  },
+  {
+   "use": "ai",
+   "ids": [
+    "chatgpt",
+    "claude",
+    "gemini",
+    "copilot",
+    "grok",
+    "deepseek"
+   ],
+   "good": 200,
+   "ok": 400
+  },
+  {
+   "use": "dev",
+   "ids": [
+    "github",
+    "npm",
+    "dockerhub",
+    "pypi",
+    "huggingface"
+   ],
+   "good": 150,
+   "ok": 300
+  }
+ ],
+ "telegram": [
+  {
+   "dc": 1,
+   "city": "Miami",
+   "cc": "US",
+   "url": "https://pluto.web.telegram.org/apiw1"
+  },
+  {
+   "dc": 2,
+   "city": "Amsterdam",
+   "cc": "NL",
+   "url": "https://venus.web.telegram.org/apiw1"
+  },
+  {
+   "dc": 3,
+   "city": "Miami",
+   "cc": "US",
+   "url": "https://aurora.web.telegram.org/apiw1"
+  },
+  {
+   "dc": 4,
+   "city": "Amsterdam",
+   "cc": "NL",
+   "url": "https://vesta.web.telegram.org/apiw1"
+  },
+  {
+   "dc": 5,
+   "city": "Singapore",
+   "cc": "SG",
+   "url": "https://flora.web.telegram.org/apiw1"
+  }
+ ],
+ "telegramOf": {
+  "cn": 5,
+  "tw": 5,
+  "jp": 5,
+  "kr": 5,
+  "sea": 5,
+  "in": 5,
+  "eu": 2,
+  "ru": 2,
+  "me": 2,
+  "na": 1,
+  "latam": 1
+ }
+}

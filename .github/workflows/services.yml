@@ -1,0 +1,23 @@
+# Daily: copy 1ms.dog's service list into this repo when it changes, so the built-in copy stays current.
+name: services
+on:
+  schedule:
+    - cron: "37 3 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch
+        run: |
+          curl -fsSL https://1ms.dog/services.json -o new.json
+          jq -e '.version == 1 and (.services | length) > 20' new.json
+          if cmp -s new.json services.json; then echo "unchanged"; rm new.json; exit 0; fi
+          mv new.json services.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Update the service list from 1ms.dog ($(jq '.services | length' services.json) services)"
+          git push
