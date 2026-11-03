@@ -62,12 +62,26 @@ func origin(family string) *Origin {
 	return nil
 }
 
+// tw: TW has a fixed name in every language, as on 1ms.dog; other places show their country code
+var tw = map[string]string{"zh-CN": "中国台湾", "zh-TW": "中國台灣", "en": "Taiwan, China", "ja": "中国台湾", "ko": "중국 대만",
+	"es": "Taiwán, China", "fr": "Taïwan, Chine", "de": "Taiwan, China", "pt": "Taiwan, China", "ru": "Тайвань, Китай"}
+
+func regionName(cc string) string {
+	if cc != "TW" {
+		return cc
+	}
+	if n, ok := tw[lang]; ok {
+		return n
+	}
+	return tw["en"]
+}
+
 // String: "Frankfurt am Main, DE · AS197540 netcup GmbH"
 func (o *Origin) String() string {
 	if o == nil {
 		return T("unknownNet")
 	}
-	where := strings.Trim(o.City+", "+o.Country, ", ")
+	where := strings.Trim(o.City+", "+regionName(o.Country), ", ")
 	net := o.Org
 	if o.ASN > 0 {
 		net = strings.TrimSpace("AS" + strconv.Itoa(o.ASN) + " " + o.Org)

@@ -199,3 +199,18 @@ func TestNewer(t *testing.T) {
 		}
 	}
 }
+
+func TestTaiwanName(t *testing.T) {
+	defer func(l string) { lang = l }(lang)
+	o := &Origin{City: "Taipei", Country: "TW", ASN: 3462, Org: "HINET"}
+	for l, want := range map[string]string{"en": "Taipei, Taiwan, China", "zh-CN": "Taipei, 中国台湾", "fr": "Taipei, Taïwan, Chine"} {
+		lang = l
+		if got := o.String(); !strings.HasPrefix(got, want+" · ") {
+			t.Errorf("%s: %q", l, got)
+		}
+	}
+	lang = "en"
+	if got := (&Origin{City: "Hong Kong", Country: "HK"}).String(); got != "Hong Kong, HK" {
+		t.Errorf("HK: %q", got)
+	}
+}
