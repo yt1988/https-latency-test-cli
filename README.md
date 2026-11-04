@@ -74,13 +74,15 @@ The **result link** opens the run on 1ms.dog, like a result shared from the page
 
 ## Options
 
-`httpslatency -h` lists them all: `-s` services, `-c` groups (`local`, `ai`, `web`, `video`, `social`, `dev`, `game`, `cdn`), `-P` local pack, `-4`/`-6`, `-n` timed requests, `-t` timeout, `-C` concurrency, `-o md|json` and `--file` to save, `--json` for stdout, `-v`, `--no-link`, `--long-link`, `--lang` (10 languages; the menu asks once and remembers it), `--offline`, `--services FILE`, `--list`, `--update`.
+`httpslatency -h` lists them all: `-s` services, `-c` groups (`local`, `ai`, `web`, `video`, `social`, `dev`, `game`, `cdn`), `-P` local pack, `-4`/`-6`, `-n` timed requests, `-t` timeout, `-C` concurrency, `-o md|json` and `--file` to save, `--json` for stdout, `--compare`, `-v`, `--no-link`, `--long-link`, `--lang` (10 languages; the menu asks once and remembers it), `--offline`, `--services FILE`, `--list`, `--update`.
+
+**Compared with Tokyo.** 1ms.dog's own server in Tokyo measures every service every 10 minutes, the same way. `httpslatency --compare` puts that server's 24-hour median beside each of your services, with the difference: far above it means the delay is on your route; slow from Tokyo too means the service. `httpslatency status` shows every service as seen from Tokyo: now, the 24-hour median, uptime over 24 hours and 7 days, and the outages of the last week (`-c` for groups, `--json` for the data). The same numbers are on [1ms.dog/status](https://1ms.dog/status/).
 
 **Updates.** At most once an hour httpslatency asks 1ms.dog for the latest release; in a terminal it offers to update, checks the new binary against the release checksums, swaps it in and runs again. `httpslatency --update` does it right away; `--offline` or `HTTPSLATENCY_NO_UPDATE=1` turns it off.
 
 ## Privacy
 
-Each run fetches the current service list from 1ms.dog and asks it where the run comes from (`1ms.dog/_ms/me`, with Cloudflare's `speed.cloudflare.com/meta` as the fallback), for the "from" line and the local pack: city, country and network. The address itself is never shown or saved. The result link (country and times only) goes to 1ms.dog's link shortener to be shortened; `--long-link` skips that. At most once an hour it asks 1ms.dog for the latest version. `--offline` skips all of these. Nothing else is sent anywhere but the requests to the services themselves, and the full results are never uploaded.
+Each run fetches the current service list from 1ms.dog and asks it where the run comes from (`1ms.dog/_ms/me`, with Cloudflare's `speed.cloudflare.com/meta` as the fallback), for the "from" line and the local pack: city, country and network. The address itself is never shown or saved. The result link (country and times only) goes to 1ms.dog's link shortener to be shortened; `--long-link` skips that. At most once an hour it asks 1ms.dog for the latest version. `--compare` and `status` download the Tokyo summary (`1ms.dog/baseline.json`) and send nothing. `--offline` skips all of these. Nothing else is sent anywhere but the requests to the services themselves, and the full results are never uploaded.
 
 ## License
 

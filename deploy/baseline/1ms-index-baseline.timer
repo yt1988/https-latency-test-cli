@@ -1,0 +1,10 @@
+[Unit]
+Description=1ms.dog home: Tokyo baseline every 10 minutes, on the minute (:00, :10 …)
+
+[Timer]
+OnCalendar=*-*-* *:00/10:00
+AccuracySec=1s
+Persistent=false
+
+[Install]
+WantedBy=timers.target

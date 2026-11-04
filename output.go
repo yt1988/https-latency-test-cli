@@ -134,6 +134,9 @@ var statusColor = map[string]string{"great": cGreen, "ok": cYellow, "slow": cRed
 func printResult(w io.Writer, l *list, rs []*result, o runOpts, from *Origin, src, link string, verbose bool, took time.Duration) {
 	fmt.Fprintf(w, "\n%s\n", paint(cBold, head(len(rs), o.rounds)))
 	fmt.Fprintln(w, paint(cDim, T("from")+" "+from.String()+famNote(o.family)))
+	if tokyo != nil {
+		fmt.Fprintln(w, paint(cDim, T("tkHead", localTime(tokyo.At))))
+	}
 	nameW := 12
 	for _, r := range rs {
 		nameW = max(nameW, width(r.name))
@@ -154,6 +157,9 @@ func printResult(w io.Writer, l *list, rs []*result, o runOpts, from *Origin, sr
 		pop := ""
 		if r.pop != "" {
 			pop = paint(cDim, r.pop)
+		}
+		if tc := tokyoCell(r); tc != "" {
+			pop = padR(tc, 15) + " " + pop
 		}
 		fmt.Fprintf(w, "    %s %s  %s  %s %s\n", padR(r.name, nameW), padL(paint(tierColor[t], ms), 8), lane(m), padR(paint(tierColor[t], T("tier_"+t)), 10), pop)
 		if verbose {
@@ -286,6 +292,11 @@ func toJSON(l *list, rs []*result, o runOpts, from *Origin, src, link string, to
 		}
 		if r.cold < 0 && r.err != "" {
 			j["error"] = r.err
+		}
+		if tokyo != nil {
+			if x := tokyo.Services[r.s.ID]; x != nil {
+				j["tokyo"] = map[string]any{"median24h": x.Med24, "uptime24h": x.Up24, "last": x.Last}
+			}
 		}
 		out = append(out, j)
 	}

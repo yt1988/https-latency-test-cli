@@ -39,6 +39,7 @@ Output
   -o, --output FORMAT   md or json: also saved to a file in the current folder (httpslatency-<date>-<time>.<ext>)
       --file NAME       the file to save to instead
       --json            the full result as JSON on stdout (nothing else)
+      --compare         beside each service, the 24-hour median 1ms.dog's server in Tokyo measured, and the difference
   -v, --verbose         a line per service: address, protocol, status, handshakes, every sample, jitter
       --no-link         don't print the result link
       --long-link       print it in full instead of shortened (s.1ms.dog/…)
@@ -46,6 +47,10 @@ Output
                         HTTPSLATENCY_LANG works too)
       --no-color        plain text (also with NO_COLOR set)
   -q, --quiet           no progress display
+
+Also
+  httpslatency status   every service as seen from 1ms.dog's server in Tokyo, measured every 10 minutes: now, the
+                        24-hour median, uptime over 24 hours and 7 days, recent outages (-c GROUPS, --json)
 
 Service list and updates
       --offline         use the list built into this binary, and don't look for updates
@@ -67,6 +72,7 @@ type cliOpts struct {
 	output, saveTo                   string
 	v6, v4, json, noLink, longLink   bool
 	verbose, quiet, noColor          bool
+	compare                          bool
 	offline, list, version           bool
 	rounds, conc                     int
 	timeout                          time.Duration
@@ -74,6 +80,10 @@ type cliOpts struct {
 
 func main() {
 	args := os.Args[1:]
+	// the server side (baseline.go): no language, menu or update check
+	if len(args) > 0 && args[0] == "baseline" {
+		os.Exit(baselineMain(args[1:], os.Stdout, os.Stderr))
+	}
 
 	// language: --lang (read in cli), then HTTPSLATENCY_LANG, then the saved choice, then the system's
 	askLang := true
@@ -83,6 +93,10 @@ func main() {
 		lang, askLang = l, false
 	} else {
 		lang = pickLang("")
+	}
+	// every service as seen from 1ms.dog's server in Tokyo (compare.go)
+	if len(args) > 0 && args[0] == "status" {
+		os.Exit(statusMain(args[1:], os.Stdout, os.Stderr))
 	}
 	if code, stop := checkUpdate(args); stop {
 		os.Exit(code)
@@ -139,6 +153,7 @@ func cli(args []string, stdout, stderr io.Writer) int {
 	boolean(&o.noLink, "no-link")
 	boolean(&o.longLink, "long-link")
 	boolean(&o.verbose, "v", "verbose")
+	boolean(&o.compare, "compare")
 	boolean(&o.quiet, "q", "quiet")
 	boolean(&o.noColor, "no-color")
 	boolean(&o.offline, "offline")
@@ -272,6 +287,17 @@ func cli(args []string, stdout, stderr io.Writer) int {
 	if ctx.Err() != nil {
 		fmt.Fprintln(stderr, "httpslatency: interrupted")
 		return 130
+	}
+
+	// --compare: the Tokyo baseline, fetched after the run so it never shares the line with the timing
+	if o.compare {
+		if o.offline {
+			fmt.Fprintln(stderr, paint(cYellow, T("tkNone", "--offline")))
+		} else if b, err := loadBaseline(); err != nil {
+			fmt.Fprintln(stderr, paint(cYellow, T("tkNone", err.Error())))
+		} else {
+			tokyo = b
+		}
 	}
 
 	link := ""

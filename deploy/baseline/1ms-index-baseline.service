@@ -1,0 +1,38 @@
+[Unit]
+Description=1ms.dog home: Tokyo baseline of every service (httpslatency baseline)
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=1ms-index
+Group=1ms-index
+ExecStart=/opt/1ms/index/httpslatency baseline --out /srv/1ms-data/index
+TimeoutStartSec=6min
+Nice=5
+UMask=0022
+# a run uses about 20 MB; the cap stops a runaway from touching the other services on this small machine
+MemoryMax=128M
+# only errors reach the journal; nothing about anyone is logged
+StandardOutput=null
+StandardError=journal
+# it only needs outgoing TCP and its own result folder
+NoNewPrivileges=yes
+CapabilityBoundingSet=
+ProtectSystem=strict
+ReadWritePaths=/srv/1ms-data/index
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+ProtectClock=yes
+ProtectHostname=yes
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+RestrictNamespaces=yes
+RestrictRealtime=yes
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+SystemCallArchitectures=native
