@@ -132,7 +132,7 @@ func summarize(l *list, rs []*result) summary {
 var statusColor = map[string]string{"great": cGreen, "ok": cYellow, "slow": cRed, "blocked": cRed}
 
 func printResult(w io.Writer, l *list, rs []*result, o runOpts, from *Origin, src, link string, verbose bool, took time.Duration) {
-	fmt.Fprintf(w, "\n%s\n", paint(cBold, T("head", len(rs), o.rounds)))
+	fmt.Fprintf(w, "\n%s\n", paint(cBold, head(len(rs), o.rounds)))
 	fmt.Fprintln(w, paint(cDim, T("from")+" "+from.String()+famNote(o.family)))
 	nameW := 12
 	for _, r := range rs {
@@ -244,7 +244,7 @@ func gap(label string) string {
 
 // printMarkdown: the result as a Markdown table, to paste into a forum post or an issue.
 func printMarkdown(w io.Writer, l *list, rs []*result, o runOpts, from *Origin, link string, took time.Duration) {
-	fmt.Fprintf(w, "## %s\n\n", T("head", len(rs), o.rounds))
+	fmt.Fprintf(w, "## %s\n\n", head(len(rs), o.rounds))
 	fmt.Fprintf(w, "%s %s%s · %s\n\n", T("from"), from.String(), famNote(o.family), time.Now().Format("2006-01-02 15:04"))
 	fmt.Fprintf(w, "| %s | %s | ms | %s | %s |\n|---|---|---:|---|---|\n", T("c_group"), T("c_service"), T("c_grade"), T("c_edge"))
 	for _, r := range rs {
@@ -369,4 +369,9 @@ func (p *progLine) clear() {
 	p.mu.Lock()
 	defer p.mu.Unlock()
 	fmt.Fprint(p.w, "\r\x1b[K")
+}
+
+// head: "HTTPS latency to 40 services · 5 timed requests each", each count in its plural form
+func head(services, rounds int) string {
+	return TN("headSvc", services, services) + " · " + TN("headReq", rounds, rounds)
 }

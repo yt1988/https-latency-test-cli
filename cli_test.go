@@ -22,6 +22,9 @@ func TestTexts(t *testing.T) {
 		}
 		for k, en := range texts["en"] {
 			s, ok := d[k]
+			if !ok && isPlural(k) {
+				continue // a plural form only where the language needs it
+			}
 			if !ok {
 				t.Errorf("%s: missing %q", l, k)
 				continue
@@ -212,5 +215,26 @@ func TestTaiwanName(t *testing.T) {
 	lang = "en"
 	if got := (&Origin{City: "Hong Kong", Country: "HK"}).String(); got != "Hong Kong, HK" {
 		t.Errorf("HK: %q", got)
+	}
+}
+
+func TestPluralHead(t *testing.T) {
+	defer func(l string) { lang = l }(lang)
+	for _, c := range []struct {
+		l    string
+		s, r int
+		want string
+	}{
+		{"en", 1, 1, "HTTPS latency to 1 service · 1 timed request each"},
+		{"en", 40, 5, "HTTPS latency to 40 services · 5 timed requests each"},
+		{"fr", 1, 5, "Latence HTTPS vers 1 service · 5 requêtes mesurées chacun"},
+		{"ru", 21, 3, "HTTPS-задержка до 21 сервиса · по 3 замеренных запроса"},
+		{"ru", 40, 5, "HTTPS-задержка до 40 сервисов · по 5 замеренных запросов"},
+		{"zh-CN", 1, 1, "到 1 个服务的 HTTPS 延迟 · 每个计时 1 次"},
+	} {
+		lang = c.l
+		if got := head(c.s, c.r); got != c.want {
+			t.Errorf("%s %d %d: %q", c.l, c.s, c.r, got)
+		}
 	}
 }
