@@ -199,7 +199,8 @@
    "id": "nintendo",
    "name": "Nintendo",
    "cat": "game",
-   "url": "https://www.nintendo.com/favicon.ico"
+   "url": "https://www.nintendo.com/favicon.ico",
+   "raw": true
   },
   {
    "id": "epic",
@@ -525,7 +526,7 @@
     "id": "careem",
     "name": "Careem",
     "cat": "local",
-    "url": "https://www.careem.com/favicon.ico"
+    "url": "https://www.careem.com/cdn-cgi/trace"
    },
    {
     "id": "aljazeera",
