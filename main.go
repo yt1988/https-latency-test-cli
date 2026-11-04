@@ -49,7 +49,7 @@ Output
   -q, --quiet           no progress display
 
 Also
-  httpslatency status   every service as seen from 1ms.dog's server in Tokyo, measured every 10 minutes: now, the
+  httpslatency status   every service as seen from 1ms.dog's server in Tokyo, measured every hour: now, the
                         24-hour median, uptime over 24 hours and 7 days, recent outages (-c GROUPS, --json)
 
 Service list and updates

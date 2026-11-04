@@ -76,7 +76,7 @@ httpslatency --json > result.json
 
 `httpslatency -h` 列出全部选项：`-s` 服务、`-c` 分组（`local`、`ai`、`web`、`video`、`social`、`dev`、`game`、`cdn`）、`-P` 本地常用、`-4`/`-6`、`-n` 计时次数、`-t` 超时、`-C` 并发、`-o md|json` 和 `--file` 保存文件、`--json` 输出到标准输出、`--compare`、`-v`、`--no-link`、`--long-link`、`--lang`（10 种语言；菜单第一次会问，之后记住）、`--offline`、`--services FILE`、`--list`、`--update`。
 
-**和东京对比。** 1ms.dog 自己在东京的服务器每 10 分钟用同样的方法测一遍每个服务。`httpslatency --compare` 在你的每个服务旁边列出那台服务器的 24 小时中位数和差值：比它高很多，延迟出在你的线路上；从东京测也慢，就是服务本身的问题。`httpslatency status` 列出从东京看到的每个服务：现在的延迟、24 小时中位数、24 小时和 7 天的可用率，以及最近一周的故障（`-c` 选分组，`--json` 输出数据）。同样的数字也在 [1ms.dog/status](https://1ms.dog/status/)。
+**和东京对比。** 1ms.dog 自己在东京的服务器每小时用同样的方法测一遍每个服务。`httpslatency --compare` 在你的每个服务旁边列出那台服务器的 24 小时中位数和差值：比它高很多，延迟出在你的线路上；从东京测也慢，就是服务本身的问题。`httpslatency status` 列出从东京看到的每个服务：现在的延迟、24 小时中位数、24 小时和 7 天的可用率，以及最近一周的故障（`-c` 选分组，`--json` 输出数据）。同样的数字也在 [1ms.dog/status](https://1ms.dog/status/)。
 
 **更新。** 每小时最多向 1ms.dog 查询一次最新版本；在终端里会询问是否更新，用发布的校验和核对新文件，替换后重新运行。`httpslatency --update` 立即更新；`--offline` 或 `HTTPSLATENCY_NO_UPDATE=1` 关闭检查。
 

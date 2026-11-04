@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-// `httpslatency baseline --out DIR` is what 1ms.dog's server in Tokyo runs every 10 minutes: every service the page
+// `httpslatency baseline --out DIR` is what 1ms.dog's server in Tokyo runs every hour: every service the page
 // knows (the global groups and every local pack), measured the same way as a normal run, written as static JSON that
 // the site reads. It isn't in the usage text: it is for that one machine, but anyone can run it.
 //
@@ -25,7 +25,7 @@ import (
 // Nothing about anyone else is in them: only what this machine measured.
 
 const (
-	baselineEvery = 10 * time.Minute
+	baselineEvery = time.Hour
 	keepDays      = 30
 	summaryDays   = 7
 )
