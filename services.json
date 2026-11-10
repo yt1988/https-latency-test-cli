@@ -286,7 +286,7 @@
     "url": "https://tw.yahoo.com/favicon.ico"
    },
    {
-    "id": "line-tw",
+    "id": "line",
     "name": "LINE",
     "cat": "local",
     "url": "https://line.me/favicon.ico"
@@ -429,7 +429,7 @@
     "url": "https://www.grab.com/robots.txt"
    },
    {
-    "id": "line-sea",
+    "id": "line",
     "name": "LINE",
     "cat": "local",
     "url": "https://line.me/favicon.ico"
