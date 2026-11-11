@@ -35,7 +35,7 @@
    "id": "deepseek",
    "name": "DeepSeek",
    "cat": "ai",
-   "url": "https://chat.deepseek.com/favicon.svg",
+   "url": "https://fe-static.deepseek.com/chat/favicon.svg",
    "origin": "CN"
   },
   {
@@ -257,7 +257,7 @@
     "id": "baidu",
     "name": "百度",
     "cat": "local",
-    "url": "https://www.baidu.com/favicon.ico"
+    "url": "https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"
    },
    {
     "id": "bilibili",
@@ -275,7 +275,7 @@
     "id": "douyin",
     "name": "抖音",
     "cat": "local",
-    "url": "https://www.douyin.com/robots.txt"
+    "url": "https://lf1-cdn-tos.bytegoofy.com/goofy/ies/douyin_web/public/favicon.ico"
    }
   ],
   "tw": [
@@ -327,7 +327,8 @@
     "id": "niconico",
     "name": "ニコニコ",
     "cat": "local",
-    "url": "https://www.nicovideo.jp/favicon.ico"
+    "url": "https://resource.video.nimg.jp/web/images/favicon_uni/favicon.ico",
+    "raw": true
    }
   ],
   "kr": [
@@ -335,7 +336,7 @@
     "id": "naver",
     "name": "NAVER",
     "cat": "local",
-    "url": "https://www.naver.com/robots.txt"
+    "url": "https://m.naver.com/favicon.ico"
    },
    {
     "id": "kakao",
@@ -420,13 +421,14 @@
     "id": "lazada",
     "name": "Lazada",
     "cat": "local",
-    "url": "https://www.lazada.sg/favicon.ico"
+    "url": "https://laz-img-cdn.alicdn.com/tfs/TB1PApewFT7gK0jSZFpXXaTkpXa-200-200.png",
+    "raw": true
    },
    {
     "id": "grab",
     "name": "Grab",
     "cat": "local",
-    "url": "https://www.grab.com/robots.txt"
+    "url": "https://assets.grab.com/wp-content/uploads/media/footer/AppStore.png"
    },
    {
     "id": "line",
