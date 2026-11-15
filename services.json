@@ -336,7 +336,8 @@
     "id": "naver",
     "name": "NAVER",
     "cat": "local",
-    "url": "https://m.naver.com/favicon.ico"
+    "url": "https://s.pstatic.net/static/www/u/2014/0328/mma_204243574.png",
+    "raw": true
    },
    {
     "id": "kakao",
@@ -394,8 +395,7 @@
     "id": "hotstar",
     "name": "JioHotstar",
     "cat": "local",
-    "url": "https://www.hotstar.com/robots.txt",
-    "m": "HEAD"
+    "url": "https://img.hotstar.com/image/upload/v1711625492/feature/rebranding/disney-plus-favicon.ico"
    },
    {
     "id": "paytm",
