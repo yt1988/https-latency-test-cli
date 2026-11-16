@@ -10,7 +10,7 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Fetch
         run: |
           curl -fsSL https://1ms.dog/services.json -o new.json
