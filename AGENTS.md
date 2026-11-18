@@ -83,3 +83,8 @@ one binary from `/dl/vX.Y.Z/`, compare its checksum, run `--version`.
 A run takes about 12 s and 10 MB, about 0.8 MB of traffic. The unit allows writing only to the results folder, keeps
 no capabilities and sends nothing but errors to the journal. The day files are the only state: `summary.json` is
 rebuilt from them on every run. File formats and retention: `deploy/baseline/README.md`.
+
+## 提交说明
+
+- 用英文，一句话说清改了什么。
+- 引用站内 issue 时只写 `#<数字>`，不要写 `yt1988/<私有仓库>#<数字>`，也不要写出私有仓库的名字；公开仓库的历史里不该出现内部仓库。
